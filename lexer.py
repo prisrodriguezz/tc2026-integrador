@@ -44,10 +44,30 @@ t_MENOR_QUE = r'<'
 
 t_ignore = ' \t'
 
+# -------------------------
+# LOGICA DE TOKENS
+# -------------------------
+# Números
+def t_NUMERO(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+    
+# Identificadores y palabras reservadas
+def t_IDENTIFICADOR(t):
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    t.type = reservadas.get(t.value.lower(), 'IDENTIFICADOR')
+    return t
+    
+# Saltos de línea
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
 # Manejo de errores
-
-
-# Logica de tokens
-
+def t_error(t):
+    print(f"Carácter no valido '{t.value[0]}'")
+    t.lexer.skip(1)
+    
 # Construccion del lexer
 lexer = lex.lex()
