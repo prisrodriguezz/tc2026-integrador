@@ -1,5 +1,25 @@
 import ply.lex as lex
 
+# Palabras reservadas
+reservadas = {
+    'buscar': 'BUSCAR',
+    'producto': 'PRODUCTO',
+    'mostrar': 'MOSTRAR',
+    'productos': 'PRODUCTOS',
+    'ver': 'VER',
+    'stock': 'STOCK',
+    'sin': 'SIN',
+    'con': 'CON',
+    'de': 'DE',
+    'categoria': 'CATEGORIA',
+    'precio': 'PRECIO',
+    'y': 'Y',
+    'mayor': 'MAYOR',
+    'menor': 'MENOR',
+    'a': 'A'
+}
+
+"""
 # Lista de Tokens
 tokens = (
     'BUSCAR',
@@ -19,28 +39,16 @@ tokens = (
     'IDENTIFICADOR',
     'NUMERO'
 )
+"""
+# Lista de Tokens
+tokens = ['IDENTIFICADOR', 'NUMERO'] + list(reservadas.values())
 
-# Palabras reservadas
-reservadas = {
-    'buscar': 'BUSCAR',
-    'producto': 'PRODUCTO',
-    'mostrar': 'MOSTRAR',
-    'productos': 'PRODUCTOS',
-    'ver': 'VER',
-    'stock': 'STOCK',
-    'sin': 'SIN',
-    'con': 'CON',
-    'de': 'DE',
-    'categoria': 'CATEGORIA',
-    'precio': 'PRECIO',
-    'y': 'Y',
-    'mayor': 'MAYOR',
-    'menor': 'MENOR',
-    'a': 'A'
-}
+
+
+
 # Operadores
-t_MAYOR_QUE = r'>'
-t_MENOR_QUE = r'<'
+#t_MAYOR_QUE = r'>'
+#t_MENOR_QUE = r'<'
 
 t_ignore = ' \t'
 
