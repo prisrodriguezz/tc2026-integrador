@@ -36,10 +36,11 @@ def p_condicion(p):
 
 def p_resto_condicion(p):
     '''resto_condicion : Y filtro resto_condicion
+                       | O filtro resto_condicion
                        | empty'''
-    # Si la longitud es 4, significa que entró por la primera regla (tiene operador 'Y')
+    # Si la longitud es 4, entró por operador 'Y' u 'O'
     if len(p) == 4:
-        p[0] = {'tipo': 'OPERADOR_LOGICO', 'operador': 'Y', 'filtro': p[2], 'resto': p[3]}
+        p[0] = {'tipo': 'OPERADOR_LOGICO', 'operador': p[1].upper(), 'filtro': p[2], 'resto': p[3]}
     else:
         # Derivación nula (lambda / epsilon). Corta la recursividad.
         p[0] = None

@@ -13,7 +13,8 @@ reservadas = {
     'de': 'DE',
     'categoria': 'CATEGORIA',
     'precio': 'PRECIO',
-    'y': 'Y'
+    'y': 'Y',
+    'o': 'O'
 }
 
 """
