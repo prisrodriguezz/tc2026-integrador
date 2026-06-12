@@ -60,10 +60,9 @@ def p_filtro(p):
         p[0] = {'tipo': 'FILTRO_PRECIO', 'comparador': p[3], 'valor': p[4]}
 
 def p_comparador(p):
-    '''comparador : MAYOR A
-                  | MENOR A'''
-    # Unificamos el operador relacional en un solo string
-    p[0] = f'{p[1]} {p[2]}'
+    '''comparador : MAYOR_QUE
+                  | MENOR_QUE'''
+    p[0] = p[1]
 
 def p_empty(p):
     'empty :'
@@ -88,7 +87,7 @@ if __name__ == '__main__':
     from lexer import lexer
     
     # Cadena de entrada de prueba con recursividad
-    data = "mostrar productos con precio menor a 15000 y de categoria oversize"
+    data = "mostrar productos con precio < 15000 y de categoria oversize"
     
     print(f"Analizando cadena: '{data}'\n")
     # Le pasamos el lexer a mi parser para que trabaje sobre los tokens

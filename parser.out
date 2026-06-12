@@ -1,0 +1,317 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> consulta
+Rule 1     consulta -> busqueda
+Rule 2     consulta -> stock
+Rule 3     busqueda -> BUSCAR PRODUCTO IDENTIFICADOR
+Rule 4     busqueda -> MOSTRAR PRODUCTOS condicion
+Rule 5     stock -> VER STOCK IDENTIFICADOR
+Rule 6     condicion -> filtro resto_condicion
+Rule 7     resto_condicion -> Y filtro resto_condicion
+Rule 8     resto_condicion -> empty
+Rule 9     filtro -> SIN STOCK
+Rule 10    filtro -> CON STOCK
+Rule 11    filtro -> DE CATEGORIA IDENTIFICADOR
+Rule 12    filtro -> CON PRECIO comparador NUMERO
+Rule 13    comparador -> MAYOR_QUE
+Rule 14    comparador -> MENOR_QUE
+Rule 15    empty -> <empty>
+
+Terminals, with rules where they appear
+
+BUSCAR               : 3
+CATEGORIA            : 11
+CON                  : 10 12
+DE                   : 11
+IDENTIFICADOR        : 3 5 11
+MAYOR_QUE            : 13
+MENOR_QUE            : 14
+MOSTRAR              : 4
+NUMERO               : 12
+PRECIO               : 12
+PRODUCTO             : 3
+PRODUCTOS            : 4
+SIN                  : 9
+STOCK                : 5 9 10
+VER                  : 5
+Y                    : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+busqueda             : 1
+comparador           : 12
+condicion            : 4
+consulta             : 0
+empty                : 8
+filtro               : 6 7
+resto_condicion      : 6 7
+stock                : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . consulta
+    (1) consulta -> . busqueda
+    (2) consulta -> . stock
+    (3) busqueda -> . BUSCAR PRODUCTO IDENTIFICADOR
+    (4) busqueda -> . MOSTRAR PRODUCTOS condicion
+    (5) stock -> . VER STOCK IDENTIFICADOR
+
+    BUSCAR          shift and go to state 4
+    MOSTRAR         shift and go to state 5
+    VER             shift and go to state 6
+
+    consulta                       shift and go to state 1
+    busqueda                       shift and go to state 2
+    stock                          shift and go to state 3
+
+state 1
+
+    (0) S' -> consulta .
+
+
+
+state 2
+
+    (1) consulta -> busqueda .
+
+    $end            reduce using rule 1 (consulta -> busqueda .)
+
+
+state 3
+
+    (2) consulta -> stock .
+
+    $end            reduce using rule 2 (consulta -> stock .)
+
+
+state 4
+
+    (3) busqueda -> BUSCAR . PRODUCTO IDENTIFICADOR
+
+    PRODUCTO        shift and go to state 7
+
+
+state 5
+
+    (4) busqueda -> MOSTRAR . PRODUCTOS condicion
+
+    PRODUCTOS       shift and go to state 8
+
+
+state 6
+
+    (5) stock -> VER . STOCK IDENTIFICADOR
+
+    STOCK           shift and go to state 9
+
+
+state 7
+
+    (3) busqueda -> BUSCAR PRODUCTO . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 10
+
+
+state 8
+
+    (4) busqueda -> MOSTRAR PRODUCTOS . condicion
+    (6) condicion -> . filtro resto_condicion
+    (9) filtro -> . SIN STOCK
+    (10) filtro -> . CON STOCK
+    (11) filtro -> . DE CATEGORIA IDENTIFICADOR
+    (12) filtro -> . CON PRECIO comparador NUMERO
+
+    SIN             shift and go to state 13
+    CON             shift and go to state 14
+    DE              shift and go to state 15
+
+    condicion                      shift and go to state 11
+    filtro                         shift and go to state 12
+
+state 9
+
+    (5) stock -> VER STOCK . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 16
+
+
+state 10
+
+    (3) busqueda -> BUSCAR PRODUCTO IDENTIFICADOR .
+
+    $end            reduce using rule 3 (busqueda -> BUSCAR PRODUCTO IDENTIFICADOR .)
+
+
+state 11
+
+    (4) busqueda -> MOSTRAR PRODUCTOS condicion .
+
+    $end            reduce using rule 4 (busqueda -> MOSTRAR PRODUCTOS condicion .)
+
+
+state 12
+
+    (6) condicion -> filtro . resto_condicion
+    (7) resto_condicion -> . Y filtro resto_condicion
+    (8) resto_condicion -> . empty
+    (15) empty -> .
+
+    Y               shift and go to state 18
+    $end            reduce using rule 15 (empty -> .)
+
+    resto_condicion                shift and go to state 17
+    empty                          shift and go to state 19
+
+state 13
+
+    (9) filtro -> SIN . STOCK
+
+    STOCK           shift and go to state 20
+
+
+state 14
+
+    (10) filtro -> CON . STOCK
+    (12) filtro -> CON . PRECIO comparador NUMERO
+
+    STOCK           shift and go to state 21
+    PRECIO          shift and go to state 22
+
+
+state 15
+
+    (11) filtro -> DE . CATEGORIA IDENTIFICADOR
+
+    CATEGORIA       shift and go to state 23
+
+
+state 16
+
+    (5) stock -> VER STOCK IDENTIFICADOR .
+
+    $end            reduce using rule 5 (stock -> VER STOCK IDENTIFICADOR .)
+
+
+state 17
+
+    (6) condicion -> filtro resto_condicion .
+
+    $end            reduce using rule 6 (condicion -> filtro resto_condicion .)
+
+
+state 18
+
+    (7) resto_condicion -> Y . filtro resto_condicion
+    (9) filtro -> . SIN STOCK
+    (10) filtro -> . CON STOCK
+    (11) filtro -> . DE CATEGORIA IDENTIFICADOR
+    (12) filtro -> . CON PRECIO comparador NUMERO
+
+    SIN             shift and go to state 13
+    CON             shift and go to state 14
+    DE              shift and go to state 15
+
+    filtro                         shift and go to state 24
+
+state 19
+
+    (8) resto_condicion -> empty .
+
+    $end            reduce using rule 8 (resto_condicion -> empty .)
+
+
+state 20
+
+    (9) filtro -> SIN STOCK .
+
+    Y               reduce using rule 9 (filtro -> SIN STOCK .)
+    $end            reduce using rule 9 (filtro -> SIN STOCK .)
+
+
+state 21
+
+    (10) filtro -> CON STOCK .
+
+    Y               reduce using rule 10 (filtro -> CON STOCK .)
+    $end            reduce using rule 10 (filtro -> CON STOCK .)
+
+
+state 22
+
+    (12) filtro -> CON PRECIO . comparador NUMERO
+    (13) comparador -> . MAYOR_QUE
+    (14) comparador -> . MENOR_QUE
+
+    MAYOR_QUE       shift and go to state 26
+    MENOR_QUE       shift and go to state 27
+
+    comparador                     shift and go to state 25
+
+state 23
+
+    (11) filtro -> DE CATEGORIA . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 28
+
+
+state 24
+
+    (7) resto_condicion -> Y filtro . resto_condicion
+    (7) resto_condicion -> . Y filtro resto_condicion
+    (8) resto_condicion -> . empty
+    (15) empty -> .
+
+    Y               shift and go to state 18
+    $end            reduce using rule 15 (empty -> .)
+
+    resto_condicion                shift and go to state 29
+    empty                          shift and go to state 19
+
+state 25
+
+    (12) filtro -> CON PRECIO comparador . NUMERO
+
+    NUMERO          shift and go to state 30
+
+
+state 26
+
+    (13) comparador -> MAYOR_QUE .
+
+    NUMERO          reduce using rule 13 (comparador -> MAYOR_QUE .)
+
+
+state 27
+
+    (14) comparador -> MENOR_QUE .
+
+    NUMERO          reduce using rule 14 (comparador -> MENOR_QUE .)
+
+
+state 28
+
+    (11) filtro -> DE CATEGORIA IDENTIFICADOR .
+
+    Y               reduce using rule 11 (filtro -> DE CATEGORIA IDENTIFICADOR .)
+    $end            reduce using rule 11 (filtro -> DE CATEGORIA IDENTIFICADOR .)
+
+
+state 29
+
+    (7) resto_condicion -> Y filtro resto_condicion .
+
+    $end            reduce using rule 7 (resto_condicion -> Y filtro resto_condicion .)
+
+
+state 30
+
+    (12) filtro -> CON PRECIO comparador NUMERO .
+
+    Y               reduce using rule 12 (filtro -> CON PRECIO comparador NUMERO .)
+    $end            reduce using rule 12 (filtro -> CON PRECIO comparador NUMERO .)
+

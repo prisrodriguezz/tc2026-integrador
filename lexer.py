@@ -13,10 +13,7 @@ reservadas = {
     'de': 'DE',
     'categoria': 'CATEGORIA',
     'precio': 'PRECIO',
-    'y': 'Y',
-    'mayor': 'MAYOR',
-    'menor': 'MENOR',
-    'a': 'A'
+    'y': 'Y'
 }
 
 """
@@ -41,14 +38,12 @@ tokens = (
 )
 """
 # Lista de Tokens
-tokens = ['IDENTIFICADOR', 'NUMERO'] + list(reservadas.values())
-
-
+tokens = ['IDENTIFICADOR', 'NUMERO', 'MAYOR_QUE', 'MENOR_QUE',] + list(reservadas.values())
 
 
 # Operadores
-#t_MAYOR_QUE = r'>'
-#t_MENOR_QUE = r'<'
+t_MAYOR_QUE = r'>'
+t_MENOR_QUE = r'<'
 
 t_ignore = ' \t'
 
@@ -79,3 +74,16 @@ def t_error(t):
     
 # Construccion del lexer
 lexer = lex.lex()
+
+# Prueba del lexer
+if __name__ == "__main__":
+
+    texto = "mostrar productos con precio > 5000 y 100"
+
+    lexer.input(texto)
+
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+        print(tok)
