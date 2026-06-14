@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BUSCAR CATEGORIA CON DE IDENTIFICADOR MAYOR_QUE MENOR_QUE MOSTRAR NUMERO PRECIO PRODUCTO PRODUCTOS SIN STOCK VER Yconsulta : busqueda\n| stockbusqueda : BUSCAR PRODUCTO IDENTIFICADOR\n| MOSTRAR PRODUCTOS condicionstock : VER STOCK IDENTIFICADORcondicion : filtro resto_condicionresto_condicion : Y filtro resto_condicion\n| emptyfiltro : SIN STOCK\n| CON STOCK\n| DE CATEGORIA IDENTIFICADOR\n| CON PRECIO comparador NUMEROcomparador : MAYOR_QUE\n| MENOR_QUEempty :'
+_lr_signature = 'BUSCAR CATEGORIA CON DE IDENTIFICADOR MAYOR_QUE MENOR_QUE MOSTRAR NUMERO O PRECIO PRODUCTO PRODUCTOS SIN STOCK VER Yconsulta : busqueda\n| stockbusqueda : BUSCAR PRODUCTO IDENTIFICADOR\n| MOSTRAR PRODUCTOS condicionstock : VER STOCK IDENTIFICADORcondicion : filtro resto_condicionresto_condicion : Y filtro resto_condicion\n| O filtro resto_condicion\n| emptyfiltro : SIN STOCK\n| CON STOCK\n| DE CATEGORIA IDENTIFICADOR\n| CON PRECIO comparador NUMEROcomparador : MAYOR_QUE\n| MENOR_QUEempty :'
     
-_lr_action_items = {'BUSCAR':([0,],[4,]),'MOSTRAR':([0,],[5,]),'VER':([0,],[6,]),'$end':([1,2,3,10,11,12,16,17,19,20,21,24,28,29,30,],[0,-1,-2,-3,-4,-15,-5,-6,-8,-9,-10,-15,-11,-7,-12,]),'PRODUCTO':([4,],[7,]),'PRODUCTOS':([5,],[8,]),'STOCK':([6,13,14,],[9,20,21,]),'IDENTIFICADOR':([7,9,23,],[10,16,28,]),'SIN':([8,18,],[13,13,]),'CON':([8,18,],[14,14,]),'DE':([8,18,],[15,15,]),'Y':([12,20,21,24,28,30,],[18,-9,-10,18,-11,-12,]),'PRECIO':([14,],[22,]),'CATEGORIA':([15,],[23,]),'MAYOR_QUE':([22,],[26,]),'MENOR_QUE':([22,],[27,]),'NUMERO':([25,26,27,],[30,-13,-14,]),}
+_lr_action_items = {'BUSCAR':([0,],[4,]),'MOSTRAR':([0,],[5,]),'VER':([0,],[6,]),'$end':([1,2,3,10,11,12,16,17,20,21,22,25,26,30,31,32,33,],[0,-1,-2,-3,-4,-16,-5,-6,-9,-10,-11,-16,-16,-12,-7,-8,-13,]),'PRODUCTO':([4,],[7,]),'PRODUCTOS':([5,],[8,]),'STOCK':([6,13,14,],[9,21,22,]),'IDENTIFICADOR':([7,9,24,],[10,16,30,]),'SIN':([8,18,19,],[13,13,13,]),'CON':([8,18,19,],[14,14,14,]),'DE':([8,18,19,],[15,15,15,]),'Y':([12,21,22,25,26,30,33,],[18,-10,-11,18,18,-12,-13,]),'O':([12,21,22,25,26,30,33,],[19,-10,-11,19,19,-12,-13,]),'PRECIO':([14,],[23,]),'CATEGORIA':([15,],[24,]),'MAYOR_QUE':([23,],[28,]),'MENOR_QUE':([23,],[29,]),'NUMERO':([27,28,29,],[33,-14,-15,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'consulta':([0,],[1,]),'busqueda':([0,],[2,]),'stock':([0,],[3,]),'condicion':([8,],[11,]),'filtro':([8,18,],[12,24,]),'resto_condicion':([12,24,],[17,29,]),'empty':([12,24,],[19,19,]),'comparador':([22,],[25,]),}
+_lr_goto_items = {'consulta':([0,],[1,]),'busqueda':([0,],[2,]),'stock':([0,],[3,]),'condicion':([8,],[11,]),'filtro':([8,18,19,],[12,25,26,]),'resto_condicion':([12,25,26,],[17,31,32,]),'empty':([12,25,26,],[20,20,20,]),'comparador':([23,],[27,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -34,12 +34,13 @@ _lr_productions = [
   ('stock -> VER STOCK IDENTIFICADOR','stock',3,'p_stock','parser.py',28),
   ('condicion -> filtro resto_condicion','condicion',2,'p_condicion','parser.py',33),
   ('resto_condicion -> Y filtro resto_condicion','resto_condicion',3,'p_resto_condicion','parser.py',38),
-  ('resto_condicion -> empty','resto_condicion',1,'p_resto_condicion','parser.py',39),
-  ('filtro -> SIN STOCK','filtro',2,'p_filtro','parser.py',48),
-  ('filtro -> CON STOCK','filtro',2,'p_filtro','parser.py',49),
-  ('filtro -> DE CATEGORIA IDENTIFICADOR','filtro',3,'p_filtro','parser.py',50),
-  ('filtro -> CON PRECIO comparador NUMERO','filtro',4,'p_filtro','parser.py',51),
-  ('comparador -> MAYOR_QUE','comparador',1,'p_comparador','parser.py',63),
-  ('comparador -> MENOR_QUE','comparador',1,'p_comparador','parser.py',64),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',68),
+  ('resto_condicion -> O filtro resto_condicion','resto_condicion',3,'p_resto_condicion','parser.py',39),
+  ('resto_condicion -> empty','resto_condicion',1,'p_resto_condicion','parser.py',40),
+  ('filtro -> SIN STOCK','filtro',2,'p_filtro','parser.py',49),
+  ('filtro -> CON STOCK','filtro',2,'p_filtro','parser.py',50),
+  ('filtro -> DE CATEGORIA IDENTIFICADOR','filtro',3,'p_filtro','parser.py',51),
+  ('filtro -> CON PRECIO comparador NUMERO','filtro',4,'p_filtro','parser.py',52),
+  ('comparador -> MAYOR_QUE','comparador',1,'p_comparador','parser.py',64),
+  ('comparador -> MENOR_QUE','comparador',1,'p_comparador','parser.py',65),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',69),
 ]

@@ -79,7 +79,7 @@ lexer = lex.lex()
 # Prueba del lexer
 if __name__ == "__main__":
 
-    texto = "mostrar productos con precio > 5000 y 100"
+    texto = "mostrar productos sin stock o de categoria mates"
 
     lexer.input(texto)
 
