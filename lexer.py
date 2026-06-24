@@ -17,27 +17,6 @@ reservadas = {
     'o': 'O'
 }
 
-"""
-# Lista de Tokens
-tokens = (
-    'BUSCAR',
-    'PRODUCTO',
-    'MOSTRAR',
-    'PRODUCTOS',
-    'VER',
-    'STOCK',
-    'SIN',
-    'CON',
-    'DE',
-    'CATEGORIA',
-    'PRECIO',
-    'Y',
-    'MAYOR_QUE',
-    'MENOR_QUE',
-    'IDENTIFICADOR',
-    'NUMERO'
-)
-"""
 # Lista de Tokens
 tokens = ['IDENTIFICADOR', 'NUMERO', 'MAYOR_QUE', 'MENOR_QUE',] + list(reservadas.values())
 
