@@ -14,7 +14,7 @@ def p_consulta(p):
     p[0] = {'tipo': 'CONSULTA', 'valor': p[1]}
 
 def p_busqueda(p):
-    '''busqueda : BUSCAR PRODUCTO IDENTIFICADOR
+    '''busqueda : BUSCAR PRODUCTO nombre
                 | MOSTRAR PRODUCTOS condicion'''
     # Usamos la palabra clave para distinguir qué tipo de búsqueda es.
     # Con lower() nos aseguramos de que funcione sin importar si el usuario usó mayúsculas.
@@ -25,7 +25,7 @@ def p_busqueda(p):
         p[0] = {'tipo': 'BUSQUEDA_FILTRADA', 'condicion': p[3]}
 
 def p_stock(p):
-    '''stock : VER STOCK IDENTIFICADOR'''
+    '''stock : VER STOCK nombre'''
     # Nodo simple para la consulta directa de stock de un producto
     p[0] = {'tipo': 'CONSULTA_STOCK', 'entidad': p[3]}
 
@@ -47,18 +47,40 @@ def p_resto_condicion(p):
 
 def p_filtro(p):
     '''filtro : SIN STOCK
-              | CON STOCK
-              | DE CATEGORIA IDENTIFICADOR
-              | CON PRECIO comparador NUMERO'''
+              | DE CATEGORIA nombre
+              | CON resto_con'''
     
     # Clasificamos el tipo de filtro dependiendo de las palabras clave que se leyeron
-    if p[1].lower() == 'sin' or (p[1].lower() == 'con' and p[2].lower() == 'stock'):
-        p[0] = {'tipo': 'FILTRO_STOCK', 'valor': f'{p[1]} {p[2]}'}
+    if p[1].lower() == 'sin':
+        p[0] = {
+            'tipo': 'FILTRO_STOCK',
+            'valor': 'sin stock'
+        }
     elif p[1].lower() == 'de':
-        p[0] = {'tipo': 'FILTRO_CATEGORIA', 'valor': p[3]}
+        p[0] = {
+            'tipo': 'FILTRO_CATEGORIA', 
+            'valor': p[3]
+        }
     else:
-        # Si no es stock ni categoría, por descarte es el filtro de precio
-        p[0] = {'tipo': 'FILTRO_PRECIO', 'comparador': p[3], 'valor': p[4]}
+        # CON resto_con
+        p[0] = p[2]
+
+def p_resto_con(p):
+    '''resto_con : STOCK
+                 | PRECIO comparador NUMERO'''
+
+    if len(p) == 2:
+        p[0] = {
+            'tipo': 'FILTRO_STOCK',
+            'valor': 'con stock'
+        }
+
+    else:
+        p[0] = {
+            'tipo': 'FILTRO_PRECIO',
+            'comparador': p[2],
+            'valor': p[3]
+        }
 
 def p_comparador(p):
     '''comparador : MAYOR_QUE
@@ -70,6 +92,28 @@ def p_empty(p):
     # Función de ayuda para representar a lambda (cadena vacía) en PLY
     pass
 
+def p_nombre(p):
+    '''nombre : IDENTIFICADOR resto_nombre'''
+
+    if p[2]:
+        p[0] = p[1] + " " + p[2]
+    else:
+        p[0] = p[1]
+
+
+def p_resto_nombre(p):
+    '''resto_nombre : IDENTIFICADOR resto_nombre
+                    | empty'''
+
+    if len(p) == 3:
+
+        if p[2]:
+            p[0] = p[1] + " " + p[2]
+        else:
+            p[0] = p[1]
+
+    else:
+        p[0] = None
 
 #manejo de errores
 
